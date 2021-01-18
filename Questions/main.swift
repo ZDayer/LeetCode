@@ -302,27 +302,7 @@ print(Q100.treeOrderFunc33(treeNode8))
 
 */
 
-
-print("-*-*-*-*-*-*-*-*-*-*-*-*")
-let sortNumber = 100
-let sortRange = UInt32(sortNumber)
-
-var array = [Int]()
-while array.count < 10 {
-    array.append(Int(arc4random() % sortRange))
-}
-
-//Order.BubbleSort1(&array)
-//Order.BubbleSort2(&array)
-
-//Order.SelectSort(&array)
-
-//Order.InsertSort(&array)
-
-Order.HeapSort(&array)
-print(array)
-
-
+/*
 print(Q100.isAnagram("anagram", "nagaram"))
 
 print(Q100.intersection([1, 2], [2, 1]))
@@ -385,4 +365,27 @@ print(Q100.checkInclusion("ab", "eidbaooo"))
 print("-*-*-*-*-*-*-*-*-*-*-*-*--")
 print(Q100.findAnagrams("baa", "aa"))
 
+
+*/
+
+
+
+print("-*-*-*-*-*-*-*-*-*-*-*-*")
+let sortNumber = 100
+let sortRange = UInt32(sortNumber)
+
+var array = [Int]()
+while array.count < 10 {
+    array.append(Int(arc4random() % sortRange))
+}
+
+//Order.BubbleSort1(&array)
+//Order.BubbleSort2(&array)
+//
+//Order.SelectSort(&array)
+//
+//Order.InsertSort(&array)
+//
+Order.HeapSort(&array)
+print(array)
 

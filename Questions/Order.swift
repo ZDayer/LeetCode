@@ -98,7 +98,18 @@ class Order : NSObject {
     
     // 大堆顶
     class func HeapSort(_ sort: inout [Int]) {
-        // 构建大堆顶
+        // 构建大堆顶 从下向上构建, 完全二叉树 父节点为 i, 左子节点为 2*i, 右子节点为 2*i+1
+        for i in (1..<sort.count/2).reversed() {
+            HeapAdjust(&sort, start: i, end: sort.count)
+        }
+        
+        for i in (1..<sort.count/2).reversed() {
+            let temp = sort[0]
+            sort[0] = sort[i]
+            sort[i] = temp
+            
+            HeapAdjust(&sort, start: 1, end: i)
+        }
         
     }
     
