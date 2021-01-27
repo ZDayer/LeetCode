@@ -29,6 +29,7 @@ class Order : NSObject {
     class func BubbleSort2(_ sort: inout [Int]) {
         for i in 0..<sort.count-1 {
             for j in (i..<sort.count-1).reversed() {
+                print(j, j+1)
                 if sort[j] > sort[j+1] {
                     let temp = sort[j+1]
                     sort[j+1] = sort[j]
