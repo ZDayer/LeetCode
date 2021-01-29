@@ -376,12 +376,13 @@ let sortNumber = 100
 let sortRange = UInt32(sortNumber)
 
 var array = [Int]()
-while array.count < 10 {
+while array.count < 3 {
     array.append(Int(arc4random() % sortRange))
 }
 
+print(array)
 //Order.BubbleSort1(&array)
-//Order.BubbleSort2(&array)
+Order.BubbleSort2(&array)
 //
 //Order.SelectSort(&array)
 //
