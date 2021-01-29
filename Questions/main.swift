@@ -368,6 +368,7 @@ print(Q100.findAnagrams("baa", "aa"))
 
 */
 
+//print(Q100.firstUniqChars(""))
 
 
 print("-*-*-*-*-*-*-*-*-*-*-*-*")
@@ -386,6 +387,56 @@ while array.count < 10 {
 //
 //Order.InsertSort(&array)
 //
-Order.HeapSort(&array)
+//Order.HeapSort(&array)
 print(array)
+print(Order.mergeMethod(array))
 
+//print(Order.QuickSort(array: array))
+print(Order.quick(array))
+
+
+let node6 = ListNode(4, nil)
+
+//let node5 = ListNode(3, node6)
+//let node4 = ListNode(1, node5)
+
+//let node3 = ListNode(3)
+//let node2 = ListNode(2, node3)
+//let node1 = ListNode(1, node2)
+////_ = Algorithm.mergeTwoLists(node1, node4)
+//var node = Algorithm.swapPairs(node1)
+//while node != nil {
+//    print(node?.val as Any)
+//    node = node?.next
+//}
+//
+
+print(Q100.maximumProduct([-100,-2,-3,1]))
+
+print(Q100.exchange([2, 2]))
+print("-*-*-*-*-*-*-*-*-*-*-*-*")
+print(Q100.addToArrayForms([2, 1, 5], 806))
+
+print(Q100.numEquivDominoPairs([[1,2],[2,1],[3,4],[5,6]]))
+
+print(Q100.singleNumbers([6, 2, 3, 3]))
+
+let nums = [
+    [1,   4,  7, 11, 15],
+    [2,   5,  8, 12, 19],
+    [3,   6,  9, 16, 22],
+    [10, 13, 14, 17, 24],
+    [18, 21, 23, 26, 30]
+  ]
+print(Q100.findNumberIn2DArray(nums, 20))
+
+print(Q100.pivotIndex([1, 2, 3, 4, 6]))
+
+
+//let treeNode1 = TreeNode(5)
+let treeNode2 = TreeNode(4)
+let treeNode3 = TreeNode(2, nil, nil)
+let treeNode4 = TreeNode(1, nil, treeNode3)
+let treeNode5 = TreeNode(3, treeNode4, treeNode2)
+print("-*-*-*-*-*-*-*-*-*-*-*-*")
+print(Q100.kthLargest(treeNode5, 1))

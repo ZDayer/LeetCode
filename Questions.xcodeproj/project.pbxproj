@@ -16,6 +16,7 @@
 		0C264E0224BD94060031F051 /* QSix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C264E0124BD94060031F051 /* QSix.swift */; };
 		0C2CAD5D25411F2900707454 /* Q763.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2CAD5C25411F2900707454 /* Q763.swift */; };
 		0C2F522C259C58A000AB0692 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2F522B259C58A000AB0692 /* Order.swift */; };
+		0C3E6B3925B6B51800E087B3 /* Algorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3E6B3825B6B51800E087B3 /* Algorithm.swift */; };
 		0C4F0000253E70F700462921 /* Q143.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4FFFFF253E70F700462921 /* Q143.swift */; };
 		0C577F872536E04000078193 /* Q1002.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C577F862536E04000078193 /* Q1002.swift */; };
 		0C636F342491BC71000BB24C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C636F332491BC71000BB24C /* main.swift */; };
@@ -55,6 +56,7 @@
 		0C264E0124BD94060031F051 /* QSix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QSix.swift; sourceTree = "<group>"; };
 		0C2CAD5C25411F2900707454 /* Q763.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Q763.swift; sourceTree = "<group>"; };
 		0C2F522B259C58A000AB0692 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		0C3E6B3825B6B51800E087B3 /* Algorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithm.swift; sourceTree = "<group>"; };
 		0C4FFFFF253E70F700462921 /* Q143.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Q143.swift; sourceTree = "<group>"; };
 		0C577F862536E04000078193 /* Q1002.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Q1002.swift; sourceTree = "<group>"; };
 		0C636F302491BC71000BB24C /* Questions */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Questions; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +128,7 @@
 				0CAE42DD2558D17900C5131B /* Q973.swift */,
 				0CAE42E02558E28000C5131B /* QTree.swift */,
 				0C1FDA4625B5723200AF88E8 /* QTrees.swift */,
+				0C3E6B3825B6B51800E087B3 /* Algorithm.swift */,
 				0C2F522B259C58A000AB0692 /* Order.swift */,
 				0C636F312491BC71000BB24C /* Products */,
 			);
@@ -214,6 +217,7 @@
 				0C2F522C259C58A000AB0692 /* Order.swift in Sources */,
 				0C088162253D66E0002A2DEC /* Q09.swift in Sources */,
 				0C636F3B2491BCB1000BB24C /* QFour.swift in Sources */,
+				0C3E6B3925B6B51800E087B3 /* Algorithm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

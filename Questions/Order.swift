@@ -118,6 +118,133 @@ class Order : NSObject {
     }
     
     
+    // 归并排序
+    class func mergeMethod(_ array: [Int]) -> [Int] {
+        let sort = mergeSort(array)
+        return sort
+    }
+   
+    class func mergeSort(_ array: [Int]) -> [Int] {
+        if array.count < 2 { return array }
+        let mid = array.count/2
+        let leftArray = mergeSort(Array(array[0..<mid]))
+        let rightArray = mergeSort(Array(array[mid..<array.count]))
+        return Merge(leftArray, rightArray)
+    }
+    
+    // leftArray rightArray 都是已经排好序的数组
+    class func Merge(_ leftArray: [Int], _ rightArray: [Int]) -> [Int] {
+        var i = 0
+        var j = 0
+        var sort = [Int]()
+        while i < leftArray.count && j < rightArray.count {
+            if leftArray[i] < rightArray[j] {
+                sort.append(leftArray[i])
+                i += 1
+            } else {
+                sort.append(rightArray[j])
+                j += 1
+            }
+        }
+        
+        while i < leftArray.count {
+            sort.append(leftArray[i])
+            i += 1
+        }
+        while j < rightArray.count {
+            sort.append(rightArray[j])
+            j += 1
+        }
+        
+        return sort
+    }
+    
+    
+    class func quick(_ array: [Int]) -> [Int] {
+        var sort = array
+        quickSort(&sort, 0, array.count-1)
+        return sort
+    }
+    
+    class func quickSort(_ array: inout [Int], _ low: Int, _ high: Int) {
+        if low < high {
+            let pivot = quickSortPivot(&array, low, high)
+            quickSort(&array, low, pivot-1)
+            quickSort(&array, pivot+1, high)
+        }
+    }
+    
    
     
+    
+    class func QuickSort(array: [Int]) -> [Int] {
+        var sortArray = array
+//        print(sortArray)
+        QSort(array: &sortArray, low: 0, high: array.count-1)
+//        print(sortArray)
+        
+
+        
+        return sortArray
+    }
+    
+    
+    
+    // 采用递归的方式实现
+    private class func QSort(array: inout [Int], low: Int, high: Int) {
+        if low < high {
+            let pivot = Partition(array: &array, low: low, high: high);
+            QSort(array: &array, low: low, high: pivot-1)
+            QSort(array: &array, low: pivot+1, high: high)
+        }
+    }
+    
+    
+    private class func Partition(array: inout [Int], low: Int, high: Int) -> Int {
+        let pivotkey = array[low]
+        var highIndex = high
+        var lowIndex = low
+        while lowIndex < highIndex {
+            while lowIndex < highIndex && array[highIndex] >= pivotkey {
+                highIndex-=1
+            }
+//            swap(array: &array, low: lowIndex, high: highIndex)
+            array[lowIndex] = array[highIndex]
+
+            while lowIndex < highIndex && array[lowIndex] <= pivotkey {
+                lowIndex+=1
+            }
+//            swap(array: &array, low: lowIndex, high: highIndex)
+            array[highIndex] = array[lowIndex]
+        }
+//        lowIndex == highIndex
+        array[lowIndex] = pivotkey
+        return lowIndex
+    }
+    
+    private class func swap(array: inout [Int], low: Int, high: Int) {
+        let temp = array[low]
+        array[low] = array[high]
+        array[high] = temp
+    }
+
+    
+    class func quickSortPivot(_ array: inout [Int], _ low: Int, _ high: Int) -> Int {
+        let pivot = array[low]
+        var lowIndex = low
+        var highIndex = high
+        while lowIndex < highIndex {
+            while lowIndex < highIndex && array[highIndex] >= pivot {
+                highIndex -= 1
+            }
+            array[lowIndex] = array[highIndex]
+
+            while lowIndex < highIndex && array[lowIndex] <= pivot {
+                lowIndex += 1
+            }
+            array[highIndex] = array[lowIndex]
+        }
+        array[lowIndex] = pivot
+        return lowIndex
+    }
 }

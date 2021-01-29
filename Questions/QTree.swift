@@ -1134,13 +1134,26 @@ public class Q100: NSObject {
     
     
     class func reverseList(_ head: ListNode?) -> ListNode? {
-        if head?.next == nil {
-            return head
+        var pre = head
+        var node = head?.next
+        while node != nil {
+            let temp = node?.next
+            node?.next = pre
+            pre = node
+            node = temp
         }
-        let node = reverseList(head?.next)
-        head?.next?.next = head
         head?.next = nil
-        return node
+        return pre
+        
+        
+        
+//        if head?.next == nil {
+//            return head
+//        }
+//        let node = reverseList(head?.next)
+//        head?.next?.next = head
+//        head?.next = nil
+//        return node
     }
 
     class func reverseString(_ s: inout [Character]) {
@@ -1866,6 +1879,239 @@ public class Q100: NSObject {
             }
         }
         return result
+    }
+    
+    class func firstUniqChars(_ s: String) -> Character {
+        var result = [Character:Int]()
+        for c in s {
+            if let count = result[c] {
+                result[c] = count+1
+            } else {
+                result[c] = 1
+            }
+        }
+        
+        for c in s {
+            if result[c]! == 1 {
+                return c
+            }
+        }
+        return Character(" ")
+    }
+    
+    // Q628 三个数的最大乘积
+    class func maximumProduct(_ nums: [Int]) -> Int {
+        // 排序
+        let sort = nums.sorted()
+        let num = nums.count
+        return max(sort[0] * sort[1] * sort[num-1], sort[num-1] * sort[num-2] * sort[num-3])
+    }
+    
+    
+    class func exchange(_ nums: [Int]) -> [Int] {
+        var left = 0
+        var right = nums.count-1
+        var sort = nums
+        while left < right {
+            while left < right && sort[left]%2 == 1 {
+                left += 1
+            }
+            
+            while right > left && sort[right]%2 == 0 {
+                right -= 1
+            }
+            if left < right {
+                let temp = sort[left]
+                sort[left] = sort[right]
+                sort[right] = temp
+            }
+        }
+        return sort
+    }
+    
+    class func addToArrayForm(_ A: [Int], _ K: Int) -> [Int] {
+        var arr = [Int]()
+        var k = K
+        while k/10 != 0 {
+            arr.append(k%10)
+            k = k/10
+        }
+        arr.append(k)
+        
+        var aIndex = A.count-1
+        var kIndex = 0
+        var num = 0
+        var result = [Int]()
+        while aIndex >= 0 || kIndex < arr.count {
+            var temp = 0
+            if aIndex >= 0 && kIndex < arr.count {
+                temp = A[aIndex] + arr[kIndex] + num
+            } else if aIndex >= 0 {
+                temp = A[aIndex]+num
+            } else if kIndex < arr.count {
+                temp = arr[kIndex]+num
+            }
+            result.append(temp%10)
+            num = temp/10
+            aIndex -= 1
+            kIndex += 1
+        }
+        if num > 0 {
+            result.append(num)
+        }
+        
+        return result.reversed()
+        
+    }
+    
+    class func addToArrayForms(_ A: [Int], _ K: Int) -> [Int] {
+        var k = K
+        var aIndex = A.count-1
+        var num = 0
+        var result = [Int]()
+        while aIndex >= 0 || k > 0 {
+            var temp = 0
+            if aIndex >= 0 && k > 0  {
+                temp = A[aIndex] + k%10 + num
+            } else if aIndex >= 0 {
+                temp = A[aIndex]+num
+            } else if k > 0 {
+                temp = k%10+num
+            }
+            result.append(temp%10)
+            num = temp/10
+            aIndex -= 1
+            k = k/10
+        }
+        if num > 0 {
+            result.append(num)
+        }
+        
+        return result.reversed()
+        
+    }
+    
+    class func hasPathSum(_ root: TreeNode?, _ targetSum: Int) -> Bool {
+        
+        
+        return false
+    }
+    
+//    func nodeValues(_ root: TreeNode?) -> Int {
+//
+//    }
+    
+    func mergeTrees(_ t1: TreeNode?, _ t2: TreeNode?) -> TreeNode? {
+        if t1 == nil {
+            return t2
+        }
+        if t2 == nil {
+            return t1
+        }
+        let node = TreeNode(t1!.val + t2!.val)
+        node.left = mergeTrees(t1?.left, t2?.left)
+        node.right = mergeTrees(t1?.right, t2?.right)
+        return node
+    }
+    
+    
+    class func numEquivDominoPairs(_ dominoes: [[Int]]) -> Int {
+        var result = 0
+        var dic = [[Int]:Int]()
+        for arr in dominoes {
+            let sort = arr.sorted()
+            if let count = dic[sort] {
+                result += count
+                dic[sort] = count+1
+            } else {
+                dic[sort] = 1
+            }
+        }
+        return result
+    }
+    
+    class func singleNumbers(_ nums: [Int]) -> [Int] {
+        var result = [Int]()
+        for num in nums {
+            if result.contains(num) {
+                result.remove(at: result.lastIndex(of: num)!)
+            } else {
+                result.append(num)
+            }
+        }
+        return result
+    }
+    
+    class func findNumberIn2DArray(_ matrix: [[Int]], _ target: Int) -> Bool {
+        if matrix.count == 0 { return false }
+        let n = matrix[0].count
+        let m = matrix.count
+        
+        var i = m-1
+        var j = 0
+        while i >= 0 && j < n {
+            let num = matrix[i][j]
+            if num > target {
+                i -= 1
+            } else if num < target {
+                j += 1
+            } else {
+                return true
+            }
+        }
+        return false
+    }
+    
+    
+    class func pivotIndex(_ nums: [Int]) -> Int {
+        let total = nums.reduce(0) { $0 + $1 }
+        var sum = 0
+        for i in 0..<nums.count {
+            if 2 * sum + nums[i] == total  {
+                return i
+            }
+            sum += nums[i]
+        }
+        return -1
+    }
+    
+    
+    class func kthLargest(_ root: TreeNode?, _ k: Int) -> Int {
+        var index = 0
+        var result = 0
+        treeNodes(root, &index, &result, k)
+        return result
+    }
+    
+    class
+    func treeNodes(_ root: TreeNode?, _ index: inout Int, _ result: inout Int, _ k: Int) {
+        if root == nil { return }
+        treeNodes(root?.right, &index, &result, k)
+        index += 1
+        if index == k {
+            result = root!.val
+            return
+        }
+        treeNodes(root?.left, &index, &result, k)
+    }
+    
+    func getKthFromEnd(_ head: ListNode?, _ k: Int) -> ListNode? {
+        var node = head
+        var count = 0
+        while node != nil {
+            count += 1
+            node = node?.next
+        }
+        var index = 0
+        node = head
+        while node != nil {
+            index += 1
+            if index == count-k+1 {
+                return node
+            }
+            node = node?.next
+        }
+        return nil
     }
 }
 
