@@ -193,7 +193,23 @@ public class Q100: NSObject {
     
     class func maxDepth(_ root: TreeNode?) -> Int {
         if root == nil { return 0 }
-        return max(maxDepth(root?.left), maxDepth(root?.right)) + 1
+//        return max(maxDepth(root?.left), maxDepth(root?.right)) + 1
+        var list = [root]
+        var deep = 0
+        while !list.isEmpty {
+            for _ in 0..<list.count {
+                let node = list.first!
+                if node!.left != nil {
+                    list.append(node!.left)
+                }
+                if node!.right != nil {
+                    list.append(node?.right)
+                }
+                list.removeFirst()
+            }
+            deep += 1
+        }
+        return deep
     }
 
     
@@ -2112,6 +2128,60 @@ public class Q100: NSObject {
             node = node?.next
         }
         return nil
+    }
+    
+    class func lengthOfLongestSubstring(_ s: String) -> Int {
+        var left = 0
+        var right = 0
+        var window = [Character:Int]()
+        
+        
+        return 0
+    }
+    
+    
+    class func fairCandySwap(_ A: [Int], _ B: [Int]) -> [Int] {
+        var result = [Int]()
+        let set = Set(A)
+        let subTotal = (A.reduce(0) { $0 + $1 } - B.reduce(0) { $0 + $1 })/2
+        for num in B {
+            if set.contains(num+subTotal) {
+                result = [num+subTotal, num]
+                break
+            }
+        }
+        return result
+    }
+    
+    class func numWays(_ n: Int) -> Int {
+        if n < 2 { return 1 }
+        var step1 = 1
+        var step2 = 1
+        var total = 0
+        for _ in 2...n {
+            total = (step1 + step2)%1000000007
+            step1 = step2
+            step2 = total
+        }
+        return total
+    }
+    
+    
+    func maxDepthss(_ root: Node?) -> Int {
+        if root == nil { return 0 }
+        var array = [root]
+        var deep = 0
+        if !array.isEmpty {
+            deep += 1
+            for _ in 0..<array.count {
+                let node = array.first!
+                if node!.children.count > 0 {
+                    array += node!.children
+                }
+                array.removeFirst()
+            }
+        }
+        return deep
     }
 }
 

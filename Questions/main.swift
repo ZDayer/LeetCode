@@ -441,3 +441,6 @@ let treeNode4 = TreeNode(1, nil, treeNode3)
 let treeNode5 = TreeNode(3, treeNode4, treeNode2)
 print("-*-*-*-*-*-*-*-*-*-*-*-*")
 print(Q100.kthLargest(treeNode5, 1))
+
+print(Q100.fairCandySwap([1, 2], [2, 3]))
+print(Q100.numWays(2))
