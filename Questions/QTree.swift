@@ -2130,14 +2130,14 @@ public class Q100: NSObject {
         return nil
     }
     
-    class func lengthOfLongestSubstring(_ s: String) -> Int {
-        var left = 0
-        var right = 0
-        var window = [Character:Int]()
-        
-        
-        return 0
-    }
+//    class func lengthOfLongestSubstring(_ s: String) -> Int {
+//        var left = 0
+//        var right = 0
+//        var window = [Character:Int]()
+//
+//
+//        return 0
+//    }
     
     
     class func fairCandySwap(_ A: [Int], _ B: [Int]) -> [Int] {
@@ -2182,6 +2182,32 @@ public class Q100: NSObject {
             }
         }
         return deep
+    }
+    
+    class func characterReplacement(_ s: String, _ k: Int) -> Int {
+        if s.count <= k { return s.count }
+        var left = 0
+        var right = 0
+        let array = Array(s)
+        var maxC = 0
+        var counts = Array(repeating: 0, count: 26)
+        let AValue = Character("A").asciiValue!
+        while right < s.count {
+            let c = array[right]
+            right += 1
+            counts[Int(c.asciiValue!-AValue)] += 1
+            maxC = max(maxC, counts[Int(c.asciiValue!-AValue)])
+            
+            // 缩小窗口
+            print(right, left, maxC)
+            if right-left-maxC > k {
+                let ch = array[left]
+                counts[Int(ch.asciiValue!-AValue)] -= 1
+                
+                left += 1
+            }
+        }
+        return right-left
     }
 }
 

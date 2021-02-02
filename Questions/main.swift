@@ -444,3 +444,6 @@ print(Q100.kthLargest(treeNode5, 1))
 
 print(Q100.fairCandySwap([1, 2], [2, 3]))
 print(Q100.numWays(2))
+print("-*-*-*-*-*-*-*-*-*-*-*-*")
+
+print(Q100.characterReplacement("ABABCC", 2))
