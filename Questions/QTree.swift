@@ -2209,6 +2209,308 @@ public class Q100: NSObject {
         }
         return right-left
     }
+    
+    
+    class func medianSlidingWindow(_ nums: [Int], _ k: Int) -> [Double] {
+        var result = [Double]()
+        for i in k...nums.count {
+            let subNums = Array(nums[i-k...i-1])
+            result.append(findMedian(subNums, k))
+        }
+        return result
+    }
+    
+    class
+    func findMedian(_ nums: [Int], _ k: Int) -> Double {
+        var minI = 0
+        var maxI = 0
+        if k%2 == 1 {
+            minI = k/2
+            maxI = k/2
+        } else {
+            maxI = k/2
+            minI = maxI-1
+        }
+        let sort = nums.sorted()
+        return Double((sort[minI]+sort[maxI]))/2.0
+    }
+    
+    
+    class func findMaxAverage(_ nums: [Int], _ k: Int) -> Double {
+        var left = 0, right = k-1
+        var total = 0
+        for i in 0..<k {
+            total += nums[i]
+        }
+        var maxSum = total
+        while right < nums.count-1  {
+            right += 1
+            total += nums[right]
+            total -= nums[left]
+            left += 1
+            maxSum = max(maxSum, total)
+        }
+        return Double(maxSum)/Double(k)
+    }
+    
+    
+    class func checkPossibility(_ nums: [Int]) -> Bool {
+        var count = 0
+        for i in 0..<nums.count - 1{
+            if nums[i] > nums[i + 1] {
+                count = count + 1
+                if count > 1 {
+                    return false
+                }
+                if i > 0 && i < nums.count - 2 && (nums[i - 1] > nums[i + 1] && nums[i] > nums[i + 2]){
+                    return false
+                }
+            }
+        }
+        
+        return count <= 1
+    }
+    
+    class func isToeplitzMatrix(_ matrix: [[Int]]) -> Bool {
+        let m = matrix.count
+        let n = matrix[0].count
+        
+        for i in 0..<m-1 {
+            var j = 0
+            let value = matrix[i][j]
+            var l = i
+            while l < m && j < n {
+                if matrix[l][j] != value {
+                    return false
+                }
+                l += 1
+                j += 1
+            }
+        }
+        
+        
+        for i in 0..<n-1 {
+            var j = 0
+            let value = matrix[j][i]
+            var l = i
+            while l < n && j < m {
+                if matrix[j][l] != value {
+                    return false
+                }
+                l += 1
+                j += 1
+            }
+        }
+        return true
+    }
+    
+    class func averageOfLevels(_ root: TreeNode?) -> [Double] {
+        if root == nil { return [Double]() }
+        var list = [root!]
+        var result = [Double]()
+        while !list.isEmpty {
+            let count = list.count
+            var sum = 0
+            for _ in 0..<count {
+                let node = list.first!
+                sum += node.val
+                if node.left != nil {
+                    list.append(node.left!)
+                }
+                if node.right != nil {
+                    list.append(node.right!)
+                }
+                list.removeFirst()
+                print(list)
+            }
+            result.append(Double(sum)/Double(count))
+        }
+        return result
+        
+    }
+    
+    func invertTree(_ root: TreeNode?) -> TreeNode? {
+        if root == nil { return root }
+        let left = root?.left
+        root?.left = root?.right
+        root?.right = left
+        
+        invertTree(root?.left)
+        invertTree(root?.right)
+        
+        return root
+    }
+    
+    func flatten(_ root: TreeNode?) {
+        var list = [TreeNode]()
+        nodeList(root, &list)
+        if list.count < 2 { return }
+        for i in 1..<list.count {
+            let node = list[i-1]
+            let node1 = list[i]
+            node.left = nil
+            node.right = node1
+        }
+    }
+    
+    func nodeList(_ root: TreeNode?, _ list: inout [TreeNode]) {
+        if root == nil { return }
+        list.append(root!)
+        nodeList(root!.left, &list)
+        nodeList(root!.right, &list)
+    }
+    
+    
+    func flattens(_ root: TreeNode?) {
+        if root == nil { return }
+        
+        flattens(root?.left)
+        flattens(root?.right)
+        
+        /**** 后序遍历位置 ****/
+        // 1、左右子树已经被拉平成一条链表
+        let left = root?.left
+        let right = root?.right
+        
+        // 2、将左子树作为右子树
+        root?.left = nil
+        root?.right = left
+        
+        // 3、将原先的右子树接到当前右子树的末端
+        var p = root
+        while p?.right != nil {
+            p = p?.right
+        }
+        p?.right = right
+    }
+    
+    
+    class func maxSatisfied(_ customers: [Int], _ grumpy: [Int], _ X: Int) -> Int {
+        // 连续X个数字区间的最大值
+        // 滑动窗口
+        var left = 0, right = X-1, maxV = 0, total = 0, sum = 0
+        for i in 0...right {
+            if grumpy[i] == 1 { //  生气
+                maxV += customers[i]
+            } else { // 不生气
+                sum += customers[i]
+            }
+        }
+        total = maxV
+        
+        while right < customers.count-1 {
+            right += 1
+            if grumpy[right] == 0 {
+                sum += customers[right]
+            } else {
+                total += customers[right]
+            }
+            
+            if grumpy[left] == 1 {
+                total -= customers[left]
+            }
+            
+            left += 1
+            maxV = max(maxV, total)
+        }
+        return sum + maxV
+        
+    }
+    
+    func levelOrder(_ root: Node?) -> [[Int]] {
+        if root == nil { return [[Int]]() }
+        var list = [root!]
+        var result = [[Int]]()
+        while !list.isEmpty {
+            var values = [Int]()
+            let count = list.count
+            for _ in 0..<count {
+                let node = list.first!
+                values.append(node.val)
+                if node.children.count > 0 {
+                    for subNode in node.children {
+                        list.append(subNode)
+                    }
+                }
+                list.removeFirst()
+            }
+            result.append(values)
+        }
+        return result
+    }
+    
+    
+    
+    class func flipAndInvertImage(_ A: [[Int]]) -> [[Int]] {
+        var temp = A
+        for i in 0..<temp.count {
+            var array = temp[i]
+            var left = 0, right = array.count-1
+            while left < right {
+                let tempV = array[left]
+                array[left] = array[right] == 0 ? 1 : 0
+                array[right] = tempV == 0 ? 1 : 0
+                left += 1
+                right -= 1
+            }
+            if left == right {
+                array[left] = array[left] == 0 ? 1 : 0
+            }
+            temp[i] = array
+        }
+        
+//        for i in 0..<temp.count {
+//            var array = temp[i]
+//            for j in 0..<array.count {
+//                array[j] = array[j] == 0 ? 1 : 0
+//            }
+//            temp[i] = array
+//        }
+        return temp
+    }
+    
+    class func isEvenOddTree(_ root: TreeNode?) -> Bool {
+        var reverse = false
+        var list = [root!]
+        while !list.isEmpty {
+            let count = list.count
+            var value = 0
+            for i in 0..<count {
+                let node = list.first!
+                print("node.val = \(node.val)")
+                let v = node.val%2
+                if v != (reverse ? 0 : 1) {
+                    return false
+                }
+                
+                if i == 0 {
+                    value = node.val
+                } else {
+                    if reverse {
+                        if node.val >= value {
+                            return false
+                        }
+                        value = node.val
+                    } else {
+                        if node.val <= value {
+                            return false
+                        }
+                        value = node.val
+                    }
+                }
+                if node.left != nil {
+                    list.append(node.left!)
+                }
+                if node.right != nil {
+                    list.append(node.right!)
+                }
+                
+                list.removeFirst()
+            }
+            reverse = !reverse
+        }
+        
+        return true
+            
+    }
 }
-
-

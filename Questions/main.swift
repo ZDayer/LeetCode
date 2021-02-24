@@ -396,7 +396,7 @@ print(Order.mergeMethod(array))
 print(Order.quick(array))
 
 
-let node6 = ListNode(4, nil)
+//let node6 = ListNode(4, nil)
 
 //let node5 = ListNode(3, node6)
 //let node4 = ListNode(1, node5)
@@ -434,16 +434,47 @@ print(Q100.findNumberIn2DArray(nums, 20))
 print(Q100.pivotIndex([1, 2, 3, 4, 6]))
 
 
-//let treeNode1 = TreeNode(5)
-let treeNode2 = TreeNode(4)
-let treeNode3 = TreeNode(2, nil, nil)
-let treeNode4 = TreeNode(1, nil, treeNode3)
-let treeNode5 = TreeNode(3, treeNode4, treeNode2)
+////let treeNode1 = TreeNode(5)
+//let treeNode2 = TreeNode(4)
+//let treeNode3 = TreeNode(2, nil, nil)
+//let treeNode4 = TreeNode(1, nil, treeNode3)
+//let treeNode5 = TreeNode(3, treeNode4, treeNode2)
 print("-*-*-*-*-*-*-*-*-*-*-*-*")
-print(Q100.kthLargest(treeNode5, 1))
+//print(Q100.kthLargest(treeNode5, 1))
 
 print(Q100.fairCandySwap([1, 2], [2, 3]))
 print(Q100.numWays(2))
 print("-*-*-*-*-*-*-*-*-*-*-*-*")
 
 print(Q100.characterReplacement("ABABCC", 2))
+
+
+print(Q100.medianSlidingWindow([1,3,-1,-3,5,3,6,7], 3))
+
+print(Q100.findMaxAverage([1,12,-5,-6,50,3], 4))
+
+print(Q100.checkPossibility([3, 4, 2, 3]))
+
+
+print(Q100.isToeplitzMatrix([[36,59,71,15,26,82,87],[56,36,59,71,15,26,82],[15,0,36,59,71,15,26]]))
+
+//print(Q100.averageOfLevels(treeNode5))
+
+let customers = [1,0,1,2,1,1,7,5]
+let grumpy = [0,1,0,1,0,1,0,1]
+let X = 3
+print(Q100.maxSatisfied(customers, grumpy, X))
+print("-*-*-*-*-*-*-*-*-*-*-*-*")
+_ = Q100.flipAndInvertImage([[1,1,0],[1,0,1],[0,0,0]])
+
+let node10 = TreeNode(2)
+let node9 = TreeNode(6)
+let node8 = TreeNode(9, nil, node10)
+let node7 = TreeNode(7, node9, nil)
+let node6 = TreeNode(8)
+let node5 = TreeNode(12)
+let node4 = TreeNode(3, node5, node6)
+let node3 = TreeNode(4, node7, node8)
+let node2 = TreeNode(10, node4, nil)
+let node1 = TreeNode(1, node2, node3)
+print(Q100.isEvenOddTree(node1))
