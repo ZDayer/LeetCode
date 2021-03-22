@@ -2513,4 +2513,84 @@ public class Q100: NSObject {
         return true
             
     }
+    
+    
+    class func constructMaximumBinaryTree(_ nums: [Int]) -> TreeNode? {
+        return maximumBinaryTree(nums, 0, nums.count-1)
+    }
+    
+    class
+    func maximumBinaryTree(_ num: [Int], _ low: Int, _ high: Int) -> TreeNode? {
+        if low > high { return nil }
+        
+        // 寻找最大值下标
+        var index = -1, maxV = Int.min
+        for i in low...high {
+            if num[i] > maxV {
+                maxV = num[i]
+                index = i
+            }
+        }
+        let root = TreeNode(num[index])
+        
+        root.left = maximumBinaryTree(num, low, index-1)
+        root.right = maximumBinaryTree(num, index+1, high)
+        
+        return root
+    }
+    
+    func transpose(_ matrix: [[Int]]) -> [[Int]] {       var result = [[Int]]()
+        let m = matrix.count
+        let n = matrix[0].count
+        for i in 0..<n {
+            var values = [Int]()
+            for j in 0..<m {
+                values.append(matrix[j][i])
+            }
+            result.append(values)
+        }
+        return result
+    }
+    
+    
+    var values:[Int]
+    init(_ nums: [Int]) {
+        self.values = nums
+    }
+    
+    func sumRange(_ i: Int, _ j: Int) -> Int {
+        var sum = 0
+        for index in i...j {
+            sum += values[index]
+        }
+        return sum
+    }
+    
+    func sortedArrayToBST(_ nums: [Int]) -> TreeNode? {
+        return createNode(nums, 0, nums.count-1)
+    }
+    
+    func createNode(_ nums: [Int], _ left: Int, _ right: Int) -> TreeNode? {
+        if left > right {
+            return nil
+        }
+        let mid = (left + right) / 2
+        let root = TreeNode(nums[mid])
+        root.left = createNode(nums, left, mid-1)
+        root.right = createNode(nums, mid+1, right)
+        return root
+    }
+    
+    class func hammingWeight(_ n: Int) -> Int {
+        var v = n
+        var num = 0
+        while v != 0 {
+            print(v)
+            if v & 1 == 1 {
+                num += 1
+            }
+            v >>= 1
+        }
+        return num
+    }
 }

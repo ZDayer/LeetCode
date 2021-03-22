@@ -478,3 +478,7 @@ let node3 = TreeNode(4, node7, node8)
 let node2 = TreeNode(10, node4, nil)
 let node1 = TreeNode(1, node2, node3)
 print(Q100.isEvenOddTree(node1))
+
+_ = Q100.constructMaximumBinaryTree([3,2,1,6,0,5])
+
+print(Q100.hammingWeight(00000000000000000000000000001011))
